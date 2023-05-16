@@ -1,79 +1,105 @@
-package bai1;
- 
+package bai2;
+
 import java.util.ArrayList;
 import java.util.Scanner;
- 
-public class List {
- 
-     
-        ArrayList<gddnha> arrGiaoDichNha = new ArrayList<>();
-        ArrayList<gddat> arrGiaoDichDat = new ArrayList<>();
-        int soGiaoDichDat = 0, soGiaoDichNha = 0;
-        long tongTienGiaoDichDat = 0, trungBinhThanhTien = 0;
-        Scanner scanner = new Scanner(System.in);
-         public void nhapdl()
-         {
-        System.out.print("Nhập số giao dịch đất: ");
-        soGiaoDichDat = scanner.nextInt();
-        System.out.print("Nhập số giao dịch nhà: ");
-        soGiaoDichNha = scanner.nextInt();
-         
-        System.out.println("Nhập thông tin giao dịch đất:");
-        for (int i = 0; i < soGiaoDichDat; i++) {
-            System.out.println("Nhập thông tin giao dịch đất thứ " + (i + 1) + ":");
-            gddat giaoDichDat = new gddat();
-            giaoDichDat.nhap();
-            arrGiaoDichDat.add(giaoDichDat);
-        }
-         
-        System.out.println("Nhập thông tin giao dịch nhà:");
-        for (int i = 0; i < soGiaoDichNha; i++) {
-            System.out.println("Nhập thông tin giao dịch nhà thứ " + (i + 1) + ":");
-            gddnha giaoDichNha = new gddnha();
-            giaoDichNha.nhap();
-            arrGiaoDichNha.add(giaoDichNha);
-        }
-        }
-         public void xuat() {
-        System.out.println("---Thông tin các giao dịch đất---");
-        for (int i = 0; i < arrGiaoDichNha.size(); i++) {
-            System.out.println(arrGiaoDichDat.get(i).toString());
-        }
-         
-        System.out.println("---Thông tin các giao dịch nhà---");
-        for (int i = 0; i < arrGiaoDichNha.size(); i++) {
-            System.out.println(arrGiaoDichNha.get(i).toString());
-        }
-         
-        for (int i = 0; i < arrGiaoDichDat.size(); i++) {
-            if (arrGiaoDichDat.get(i).getLoaiDat().equalsIgnoreCase("A")) {
-                tongTienGiaoDichDat += arrGiaoDichDat.get(i).getDienTich() * 
-                    arrGiaoDichDat.get(i).getDonGia() * 1.5;
-            } else if (arrGiaoDichDat.get(i).getLoaiDat().equalsIgnoreCase("B") || 
-                    arrGiaoDichDat.get(i).getLoaiDat().equalsIgnoreCase("C")) {
-                tongTienGiaoDichDat += arrGiaoDichDat.get(i).getDienTich() * 
-                    arrGiaoDichDat.get(i).getDonGia();
-            }
-        }
-        trungBinhThanhTien = tongTienGiaoDichDat / (arrGiaoDichDat.size());
-        System.out.println("Trung bình thành tiền của giao dịch đất = " + trungBinhThanhTien);
-         
-        // xuất ra các giao dịch của tháng 9 năm 2013
-        System.out.println("Các giao dịch đất của tháng 9 năm 2013: ");
-        for (int i = 0; i < arrGiaoDichDat.size(); i++) {
-            String[] dateGiaoDichDat = arrGiaoDichDat.get(i).getNgayGiaoDich().split("/");
-            if (dateGiaoDichDat[1].equals("9") && dateGiaoDichDat[2].equals("2013")) {
-                System.out.println(arrGiaoDichDat.get(i).toString());
-            }
-        }
-         
-        System.out.println("Các giao dịch nhà của tháng 9 năm 2013: ");
-        for (int i = 0; i < arrGiaoDichNha.size(); i++) {
-            String[] dateGiaoDichNha = arrGiaoDichNha.get(i).getNgayGiaoDich().split("/");
-            if (dateGiaoDichNha[1].equals("9") && dateGiaoDichNha[2].equals("2013")) {
-                System.out.println(arrGiaoDichNha.get(i).toString());
-            }
-        }
-    }
 
+public class List {
+  ArrayList<khVN> listVN = new ArrayList<>();
+  ArrayList<khNN> listNN = new ArrayList<>();
+  Scanner sc = new Scanner(System.in);
+  void nhapkhVN()
+  {
+	do {
+	 System.out.println("nhap ma khach hang ");
+	 String mkh = sc.nextLine();
+	 if(mkh == null || mkh.equalsIgnoreCase(""))
+	 {
+		 break;
+	 }
+	 System.out.println("nhap dtkh ");
+	 String dtkh = sc.nextLine();
+	 System.out.println(" nhap ten khach hang ") ;
+	 String tkh = sc.nextLine();
+	 System.out.println("ngay ra hoa don");
+	 String n = sc.nextLine();
+	 System.out.println("nhap so luong kW ");
+	 double sl = sc.nextDouble();
+	 System.out.println("nhap don gia ");
+	 double dg = sc.nextDouble();
+	 System.out.println("nhap dinh muc ");
+	 double dm = sc.nextDouble();
+	 khVN kh = new khVN(mkh,dtkh,tkh,dg,sl,n,dm);
+	 listVN.add(kh);
+	 }
+	while(true);
+  }
+  void nhapkhNN()
+  {
+	  do {
+		 System.out.println("nhap ma khach hang ");
+		 String mkh = sc.nextLine();
+		 if(mkh == null || mkh.equalsIgnoreCase(""))
+		 {
+			 break;
+		 }
+		 System.out.println("nhap quoc tich ");
+		 String qt = sc.nextLine();
+		 System.out.println(" nhap ten khach hang ") ;
+		 String tkh = sc.nextLine();
+		 System.out.println("ngay ra hoa don");
+		 String n = sc.nextLine();
+		 System.out.println("nhap so luong kW ");
+		 double sl = sc.nextDouble();
+		 System.out.println("nhap don gia ");
+		 double dg = sc.nextDouble();
+		 khNN kh = new khNN(mkh,qt,tkh,dg,sl,n);
+		 listNN.add(kh); 
+			}
+	  while(true);
+  }
+  void xuatVN()
+  {
+	 for (khVN kh : listVN )
+         {
+		   System.out.printf(" %s  %s  %s  %s  %f   %f   %f  %f\n",kh.mkh,kh.ht,kh.dtkh,kh.ngay,kh.sl,kh.dongia,kh.dm,kh.thanhtien());
+		 }  
+  }
+  void xuatNN() 
+  {
+	  for (khNN kh : listNN )
+      {
+		   System.out.printf(" %s  %s  %s  %s  %f   %f   %f\n",kh.mkh,kh.ht,kh.qt,kh.ngay,kh.sl,kh.dongia,kh.thanhtien());
+	  }    
+  }
+    void menu() 
+    {
+    	int n = sc.nextInt();
+    	do {
+    		System.out.println("chon 1 : muc kh VN");
+    		System.out.println("chon 2 : muc kh nuoc ngoai ");
+    		switch (n) 
+    		{
+    		case 1: int a =sc.nextInt();
+    		System.out.println("chon 1 : nhap ");
+    		System.out.println("chon 2 : xuat");
+    		        switch(a) 
+    		        {
+    		        case 1: nhapkhVN();break;
+    		        case 2:xuatVN();break;
+    		        }
+    		case 2: int b =sc.nextInt();
+    		System.out.println("chon 1 : nhap ");
+    		System.out.println("chon 2 : xuat");
+    		      switch(b) 
+    		      {
+    		      case 1: nhapkhNN();
+    		      case 2: xuatNN();
+    		      
+    		      }
+    		}
+    	}while(true);
+    	
+    	
+    	
+    }
 }
